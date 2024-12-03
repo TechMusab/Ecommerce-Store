@@ -4,12 +4,20 @@ import { LoginPage } from "./Routes.js";
 import { SignupPage } from "./Routes.js";
 import { ActivationPage } from "./Routes.js";
 import { ToastContainer } from "react-toastify";
+import { useEffect } from "react";
+import { loadUser } from "./redux/actions/user";
+import Store from "./redux/store";
+import { Homepage } from "./Routes.js";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
+  useEffect(() => {
+    Store.dispatch(loadUser());
+  }, []);
   return (
     <BrowserRouter>
       <Routes>
+      <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/sign-up" element={<SignupPage/>}></Route>
         <Route
