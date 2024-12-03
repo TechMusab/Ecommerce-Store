@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LoginPage } from "./Routes.js";
 import { SignupPage } from "./Routes.js";
 import { ActivationPage } from "./Routes.js";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
     <BrowserRouter>
@@ -14,6 +17,18 @@ function App() {
           element={<ActivationPage />}
         />
       </Routes>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </BrowserRouter>
   );
 }

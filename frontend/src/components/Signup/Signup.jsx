@@ -40,8 +40,9 @@ const Signup = () => {
         setAvatar();
       })
       .catch((error) => {
-        console.log("error")
-        toast.error(error.response.data.message);
+        const errorMessage = error.response?.data?.message || "An error occurred";
+        console.log(errorMessage);
+        toast.error(errorMessage);
       });
   };
 
