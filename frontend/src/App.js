@@ -9,9 +9,10 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/sign-up" element={<SignupPage/>}></Route>
-        <Route path="/activation/:url" element={<ActivationPage/>}></Route>
-
-
+        <Route
+          path="/activation/:activation_token"
+          element={<ActivationPage />}
+        />
       </Routes>
     </BrowserRouter>
   );

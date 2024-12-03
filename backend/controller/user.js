@@ -9,6 +9,7 @@ const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
 const { isAuthenticated, isAdmin } = require("../middleware/auth");
 
+
 // create user
 router.post("/create-user", async (req, res, next) => {
   try {
@@ -17,8 +18,7 @@ router.post("/create-user", async (req, res, next) => {
 
     if (userEmail) {
       return next(new ErrorHandler("User already exists", 400));
-    }
-
+    }  
     const myCloud = await cloudinary.v2.uploader.upload(avatar, {
       folder: "avatars",
     });
@@ -35,7 +35,7 @@ router.post("/create-user", async (req, res, next) => {
 
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `https://localhost:3000/activation/${activationToken}`;
+    const activationUrl = `http://localhost:3001/activation/${activationToken}`;
 
     try {
       await sendMail({
@@ -67,6 +67,7 @@ router.post(
   "/activation",
   catchAsyncErrors(async (req, res, next) => {
     try {
+      console.log("User activated");
       const { activation_token } = req.body;
 
       const newUser = jwt.verify(

@@ -3,6 +3,9 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
+import axios from "axios";
+import { server } from "../../server";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -25,7 +28,22 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  }
+
+    axios
+      .post(`${server}/user/create-user`, { name, email, password, avatar })
+      .then((res) => {
+        console.log("success")
+        toast.success(res.data.message);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setAvatar();
+      })
+      .catch((error) => {
+        console.log("error")
+        toast.error(error.response.data.message);
+      });
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
