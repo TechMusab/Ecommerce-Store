@@ -30,8 +30,13 @@ const Login = () => {
         window.location.reload(true); 
       })
       .catch((err) => {
-        toast.error(err.response.data.message);
+        if (err.response) {
+          toast.error(err.response.data.message);
+        } else {
+          toast.error("An error occurred, please try again.");
+        }
       });
+      
   };
 
   return (

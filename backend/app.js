@@ -19,6 +19,16 @@ app.use("/test", (req, res) => {
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 const user = require("./controller/user");
+const shop = require("./controller/shop");
+const product = require("./controller/product");
+const event = require("./controller/event");
+const coupon = require("./controller/coupounCode");
+const payment = require("./controller/payment");
+const order = require("./controller/order");
+const conversation = require("./controller/conversation");
+const message = require("./controller/message");
+const withdraw = require("./controller/withdraw");
+
 app.use("/api/v2/user", user);
 // config
 if (process.env.NODE_ENV !== "PRODUCTION") {
