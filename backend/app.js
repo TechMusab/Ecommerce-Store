@@ -17,7 +17,8 @@ app.use("/test", (req, res) => {
 });
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
-
+const user = require("./controller/user");
+app.use("/api/v2/user", user);
 // config
 if (process.env.NODE_ENV !== "PRODUCTION") {
   require("dotenv").config({
