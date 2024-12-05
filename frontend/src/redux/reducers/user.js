@@ -6,77 +6,82 @@ const initialState = {
 
 export const userReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase("LoadUserRequest", (state) => {
+    // Load user actions
+    .addCase('LoadUserRequest', (state) => {
       state.loading = true;
     })
-    .addCase("LoadUserSuccess", (state, action) => {
+    .addCase('LoadUserSuccess', (state, { payload }) => {
       state.isAuthenticated = true;
       state.loading = false;
-      state.user = action.payload;
+      state.user = payload;
     })
-    .addCase("LoadUserFail", (state, action) => {
+    .addCase('LoadUserFail', (state, { payload }) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = payload;
       state.isAuthenticated = false;
     })
 
-    // update user information
-    .addCase("updateUserInfoRequest", (state) => {
+    // Update user information actions
+    .addCase('updateUserInfoRequest', (state) => {
       state.loading = true;
     })
-    .addCase("updateUserInfoSuccess", (state, action) => {
+    .addCase('updateUserInfoSuccess', (state, { payload }) => {
       state.loading = false;
-      state.user = action.payload;
+      state.user = payload;
     })
-    .addCase("updateUserInfoFailed", (state, action) => {
+    .addCase('updateUserInfoFailed', (state, { payload }) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = payload;
     })
 
-    // update user address
-    .addCase("updateUserAddressRequest", (state) => {
+    // Update user address actions
+    .addCase('updateUserAddressRequest', (state) => {
       state.addressloading = true;
     })
-    .addCase("updateUserAddressSuccess", (state, action) => {
+    .addCase('updateUserAddressSuccess', (state, { payload }) => {
       state.addressloading = false;
-      state.successMessage = action.payload.successMessage;
-      state.user = action.payload.user;
+      state.successMessage = payload.successMessage;
+      state.user = payload.user;
     })
-    .addCase("updateUserAddressFailed", (state, action) => {
+    .addCase('updateUserAddressFailed', (state, { payload }) => {
       state.addressloading = false;
-      state.error = action.payload;
+      state.error = payload;
     })
 
-    // delete user address
-    .addCase("deleteUserAddressRequest", (state) => {
+    // Delete user address actions
+    .addCase('deleteUserAddressRequest', (state) => {
       state.addressloading = true;
     })
-    .addCase("deleteUserAddressSuccess", (state, action) => {
+    .addCase('deleteUserAddressSuccess', (state, { payload }) => {
       state.addressloading = false;
-      state.successMessage = action.payload.successMessage;
-      state.user = action.payload.user;
+      state.successMessage = payload.successMessage;
+      state.user = payload.user;
     })
-    .addCase("deleteUserAddressFailed", (state, action) => {
+    .addCase('deleteUserAddressFailed', (state, { payload }) => {
       state.addressloading = false;
-      state.error = action.payload;
+      state.error = payload;
     })
 
-    // get all users --- admin
-    .addCase("getAllUsersRequest", (state) => {
+    // Get all users actions (admin)
+    .addCase('getAllUsersRequest', (state) => {
       state.usersLoading = true;
     })
-    .addCase("getAllUsersSuccess", (state, action) => {
+    .addCase('getAllUsersSuccess', (state, { payload }) => {
       state.usersLoading = false;
-      state.users = action.payload;
+      state.users = payload;
     })
-    .addCase("getAllUsersFailed", (state, action) => {
+    .addCase('getAllUsersFailed', (state, { payload }) => {
       state.usersLoading = false;
-      state.error = action.payload;
+      state.error = payload;
     })
-    .addCase("clearErrors", (state) => {
+
+    // Clear errors
+    .addCase('clearErrors', (state) => {
       state.error = null;
     })
-    .addCase("clearMessages", (state) => {
+
+    // Clear success messages
+    .addCase('clearMessages', (state) => {
       state.successMessage = null;
     });
 });
