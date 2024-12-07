@@ -10,29 +10,27 @@ const DropDown = ({ categoriesData, setDropDown }) => {
     window.location.reload();
   };
   return (
-    <div className="pb-4 w-[270px] bg-[#fff] absolute z-30 rounded-b-md shadow-sm">
-      {categoriesData &&
-        categoriesData.map((i, index) => (
-          <div
-            key={index}
-            className={`${styles.noramlFlex}`}
-            onClick={() => submitHandle(i)}
-          >
-            <img
-              src={i.image_Url}
-              style={{
-                width: "25px",
-                height: "25px",
-                objectFit: "contain",
-                marginLeft: "10px",
-                userSelect: "none",
-              }}
-              alt=""
-            />
-            <h3 className="m-3 cursor-pointer select-none">{i.title}</h3>
-          </div>
-        ))}
-    </div>
+    <div className="pb-4 w-[270px] bg-[#fff] absolute z-30 rounded-b-md shadow-md">
+    {categoriesData &&
+      categoriesData.map((i, index) => (
+        <div
+          key={index}
+          className="flex items-center p-2 hover:bg-[#f7f7f7] cursor-pointer rounded-md transition-all duration-300"
+          onClick={() => submitHandle(i)}
+        >
+          <img
+            src={i.image_Url}
+            alt={i.title}
+            className="w-[25px] h-[25px] object-contain mr-3"
+            style={{ userSelect: "none" }}
+          />
+          <h3 className="m-0 select-none text-[#333] text-[16px] font-medium hover:text-[#f63b60]">
+            {i.title}
+          </h3>
+        </div>
+      ))}
+  </div>
+  
   );
 };
 

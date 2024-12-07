@@ -107,45 +107,44 @@ const AllWithdraw = () => {
     });
   return (
     <div className="w-full flex items-center pt-5 justify-center">
-      <div className="w-[95%] bg-white">
-        <DataGrid
-          rows={row}
-          columns={columns}
-          pageSize={10}
-          disableSelectionOnClick
-          autoHeight
-        />
-      </div>
-      {open && (
-        <div className="w-full fixed h-screen top-0 left-0 bg-[#00000031] z-[9999] flex items-center justify-center">
-          <div className="w-[50%] min-h-[40vh] bg-white rounded shadow p-4">
-            <div className="flex justify-end w-full">
-              <RxCross1 size={25} onClick={() => setOpen(false)} />
-            </div>
-            <h1 className="text-[25px] text-center font-Poppins">
-              Update Withdraw status
-            </h1>
-            <br />
-            <select
-              name=""
-              id=""
-              onChange={(e) => setWithdrawStatus(e.target.value)}
-              className="w-[200px] h-[35px] border rounded"
-            >
-              <option value={withdrawStatus}>{withdrawData.status}</option>
-              <option value={withdrawStatus}>Succeed</option>
-            </select>
-            <button
-              type="submit"
-              className={`block ${styles.button} text-white !h-[42px] mt-4 text-[18px]`}
-              onClick={handleSubmit}
-            >
-              Update
-            </button>
-          </div>
-        </div>
-      )}
+    <div className="w-[95%] bg-white rounded-lg shadow-lg">
+      <DataGrid
+        rows={row}
+        columns={columns}
+        pageSize={10}
+        disableSelectionOnClick
+        autoHeight
+      />
     </div>
+    {open && (
+      <div className="w-full fixed h-screen top-0 left-0 bg-[#00000031] z-[9999] flex items-center justify-center">
+        <div className="w-[50%] min-h-[40vh] bg-white rounded-xl shadow-2xl p-6">
+          <div className="flex justify-end w-full">
+            <RxCross1 size={25} onClick={() => setOpen(false)} />
+          </div>
+          <h1 className="text-2xl text-center font-Poppins font-semibold text-gray-800">
+            Update Withdraw Status
+          </h1>
+          <br />
+          <select
+            onChange={(e) => setWithdrawStatus(e.target.value)}
+            className="w-[200px] h-[35px] border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"
+          >
+            <option value={withdrawStatus}>{withdrawData.status}</option>
+            <option value="Succeed">Succeed</option>
+          </select>
+          <button
+            type="submit"
+            className={`block ${styles.button} text-white !h-[42px] mt-6 text-[18px] rounded-md shadow-md transition-all hover:bg-opacity-80`}
+            onClick={handleSubmit}
+          >
+            Update
+          </button>
+        </div>
+      </div>
+    )}
+  </div>
+  
   );
 };
 

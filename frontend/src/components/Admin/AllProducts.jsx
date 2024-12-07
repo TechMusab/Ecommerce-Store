@@ -86,15 +86,15 @@ const AllProducts = () => {
 
   return (
     <>
-        <div className="w-full mx-8 pt-1 mt-10 bg-white">
-          <DataGrid
-            rows={row}
-            columns={columns}
-            pageSize={10}
-            disableSelectionOnClick
-            autoHeight
-          />
-        </div>
+       <div className="w-full mx-8 pt-1 mt-10 bg-gradient-to-br from-[#f9fafb] to-[#e5e7eb] rounded-lg shadow-lg p-6">
+  <DataGrid
+    rows={row}
+    columns={columns}
+    pageSize={10}
+    disableSelectionOnClick
+    autoHeight
+  />
+</div>
     </>
   );
 };
