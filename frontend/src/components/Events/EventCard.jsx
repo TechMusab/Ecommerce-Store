@@ -11,6 +11,7 @@ const EventCard = ({ active, data }) => {
   const dispatch = useDispatch();
 
   const addToCartHandler = (data) => {
+    if (!data) return; // Ensure data exists
     const isItemExists = cart && cart.find((i) => i._id === data._id);
     if (isItemExists) {
       toast.error("Item already in cart!");
@@ -23,7 +24,13 @@ const EventCard = ({ active, data }) => {
         toast.success("Item added to cart successfully!");
       }
     }
+  };
+
+  // Early return if no data
+  if (!data) {
+    return <div>No event data available</div>;
   }
+
   return (
     <div
       className={`w-full block bg-white rounded-lg ${
@@ -31,11 +38,10 @@ const EventCard = ({ active, data }) => {
       } lg:flex p-2`}
     >
       <div className="w-full lg:-w[50%] m-auto">
-      <img
-  src={data?.images?.[0]?.url || "fallback-image-url"} 
-  alt="Product"
-/>
-
+        <img
+          src={data?.images?.[0]?.url || "fallback-image-url"} 
+          alt="Product"
+        />
       </div>
       <div className="w-full lg:[w-50%] flex flex-col justify-center">
         <h2 className={`${styles.productTitle}`}>{data.name}</h2>
@@ -59,7 +65,12 @@ const EventCard = ({ active, data }) => {
           <Link to={`/product/${data._id}?isEvent=true`}>
             <div className={`${styles.button} text-[#fff]`}>See Details</div>
           </Link>
-          <div className={`${styles.button} text-[#fff] ml-5`} onClick={() => addToCartHandler(data)}>Add to cart</div>
+          <div
+            className={`${styles.button} text-[#fff] ml-5`}
+            onClick={() => addToCartHandler(data)}
+          >
+            Add to cart
+          </div>
         </div>
       </div>
     </div>
