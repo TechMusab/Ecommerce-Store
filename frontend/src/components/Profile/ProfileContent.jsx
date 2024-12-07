@@ -218,10 +218,11 @@ const AllOrders = () => {
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
+        // Directly access the 'status' property from 'params.row'
+        return params.row.status === "Delivered"
           ? "greenColor"
           : "redColor";
-      },
+      },      
     },
     {
       field: "itemsQty",
@@ -306,10 +307,11 @@ const AllRefundOrders = () => {
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
+        // Directly access the 'status' field from 'params.row'
+        return params.row.status === "Delivered"
           ? "greenColor"
           : "redColor";
-      },
+      },      
     },
     {
       field: "itemsQty",
@@ -391,10 +393,10 @@ const TrackOrder = () => {
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
+        return params.row.status === "Delivered"
           ? "greenColor"
           : "redColor";
-      },
+      },      
     },
     {
       field: "itemsQty",
