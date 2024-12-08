@@ -5,7 +5,7 @@ import UserOrderDetails from "../components/UserOrderDetails";
 
 const OrderDetailsPage = () => {
   return (
-    <div>
+    <div className='bg-[#111827]'>
         <Header />
         <UserOrderDetails />
         <Footer />

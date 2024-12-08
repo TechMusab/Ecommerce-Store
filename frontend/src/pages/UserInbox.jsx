@@ -208,7 +208,7 @@ const UserInbox = () => {
   }, [messages]);
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-[#111827]">
       {!open && (
         <>
           <Header />
@@ -289,8 +289,8 @@ const MessageList = ({
 
   return (
     <div
-      className={`w-full flex p-3 px-3 ${
-        active === index ? "bg-[#00000010]" : "bg-transparent"
+      className={`w-full text-white flex p-3 px-3 ${
+        active === index ? "bg-[#111827]" : "bg-transparent"
       }  cursor-pointer`}
       onClick={(e) =>
         setActive(index) ||
@@ -314,7 +314,7 @@ const MessageList = ({
       </div>
       <div className="pl-3">
         <h1 className="text-[18px]">{user?.name}</h1>
-        <p className="text-[16px] text-[#000c]">
+        <p className="text-[16px] text-white">
           {!loading && data?.lastMessageId !== userData?._id
             ? "You:"
             : userData?.name.split(" ")[0] + ": "}{" "}
@@ -338,7 +338,7 @@ const SellerInbox = ({
   handleImageUpload,
 }) => {
   return (
-    <div className="w-[full] min-h-full flex flex-col justify-between p-5">
+    <div className="w-[full] min-h-full flex flex-col justify-between p-5 bg-[#111827]">
       {/* message header */}
       <div className="w-full flex p-3 items-center justify-between bg-slate-200">
         <div className="flex">

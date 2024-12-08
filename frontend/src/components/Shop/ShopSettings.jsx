@@ -72,8 +72,8 @@ const ShopSettings = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col items-center">
-      <div className="flex w-full 800px:w-[80%] flex-col justify-center my-5">
+    <div className="w-full min-h-screen flex flex-col items-center text-black ">
+      <div className="flex w-full 800px:w-[80%] flex-col justify-center my-5 bg-white rounded-sm p-4">
         <div className="w-full flex items-center justify-center">
           <div className="relative">
             <img
@@ -110,7 +110,7 @@ const ShopSettings = () => {
               placeholder={`${seller.name}`}
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={` !w-[95%] mb-4 p-4 800px:mb-0 bg-white text-black border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
               required
             />
           </div>
@@ -127,7 +127,7 @@ const ShopSettings = () => {
               }`}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={` !w-[95%] mb-4 p-4 800px:mb-0 bg-white text-black border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
             />
           </div>
           <div className="w-[100%] flex items-center flex-col 800px:w-[50%] mt-5">
@@ -139,7 +139,7 @@ const ShopSettings = () => {
               placeholder={seller?.address}
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={` !w-[95%] mb-4 p-4 800px:mb-0 bg-white text-black border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
               required
             />
           </div>
@@ -153,7 +153,7 @@ const ShopSettings = () => {
               placeholder={seller?.phoneNumber}
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={` !w-[95%] mb-4 p-4 800px:mb-0 bg-white text-black border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
               required
             />
           </div>
@@ -167,7 +167,7 @@ const ShopSettings = () => {
               placeholder={seller?.zipCode}
               value={zipCode}
               onChange={(e) => setZipcode(e.target.value)}
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={` !w-[95%] mb-4 p-4 800px:mb-0 bg-white text-black border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
               required
             />
           </div>
@@ -176,7 +176,7 @@ const ShopSettings = () => {
             <input
               type="submit"
               value="Update Shop"
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={` !w-[95%] mb-4 p-4 800px:mb-0 bg-white text-black border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500`}
               required
               readOnly
             />

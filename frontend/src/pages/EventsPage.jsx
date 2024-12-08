@@ -8,7 +8,7 @@ const EventsPage = () => {
   const { allEvents, isLoading } = useSelector((state) => state.events);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen">
       <Header activeHeading={4} />
       <div className="container mx-auto px-4 py-6">
         {isLoading ? (
@@ -20,7 +20,7 @@ const EventsPage = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center text-gray-600">
+          <div className="text-center text-gray-600 mt-10">
             <h2 className="text-2xl font-bold">No Events Available</h2>
             <p>Please check back later for updates.</p>
           </div>

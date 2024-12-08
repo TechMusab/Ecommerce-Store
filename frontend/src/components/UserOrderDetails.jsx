@@ -64,62 +64,60 @@ const UserOrderDetails = () => {
   };
 
   return (
-    <div className={`py-4 min-h-screen ${styles.section}`}>
+    <div className={`py-4 min-h-screen bg-[#111827] text-white ${styles.section}`}>
       <div className="w-full flex items-center justify-between">
         <div className="flex items-center">
-          <BsFillBagFill size={30} color="crimson" />
+          <BsFillBagFill size={30} color="white" />
           <h1 className="pl-2 text-[25px]">Order Details</h1>
         </div>
       </div>
-
+  
       <div className="w-full flex items-center justify-between pt-6">
-        <h5 className="text-[#00000084]">
+        <h5 className="text-gray-400">
           Order ID: <span>#{data?._id?.slice(0, 8)}</span>
         </h5>
-        <h5 className="text-[#00000084]">
+        <h5 className="text-gray-400">
           Placed on: <span>{data?.createdAt?.slice(0, 10)}</span>
         </h5>
       </div>
-
-      {/* order items */}
+  
       <br />
       <br />
       {data &&
         data?.cart.map((item, index) => {
-          return(
-          <div className="w-full flex items-start mb-5">
-            <img
-              src={`${item.images[0]?.url}`}
-              alt=""
-              className="w-[80x] h-[80px]"
-            />
-            <div className="w-full">
-              <h5 className="pl-3 text-[20px]">{item.name}</h5>
-              <h5 className="pl-3 text-[20px] text-[#00000091]">
-                US${item.discountPrice} x {item.qty}
-              </h5>
+          return (
+            <div className="w-full flex items-start mb-5">
+              <img
+                src={`${item.images[0]?.url}`}
+                alt=""
+                className="w-[80x] h-[80px]"
+              />
+              <div className="w-full">
+                <h5 className="pl-3 text-[20px]">{item.name}</h5>
+                <h5 className="pl-3 text-[20px] text-gray-400">
+                  US${item.discountPrice} x {item.qty}
+                </h5>
+              </div>
+              {!item.isReviewed && data?.status === "Delivered" ? (
+                <div
+                  className={`${styles.button} bg-white text-black`}
+                  onClick={() => setOpen(true) || setSelectedItem(item)}
+                >
+                  Write a review
+                </div>
+              ) : null}
             </div>
-            {!item.isReviewed && data?.status === "Delivered" ?  <div
-                className={`${styles.button} text-[#fff]`}
-                onClick={() => setOpen(true) || setSelectedItem(item)}
-              >
-                Write a review
-              </div> : (
-             null
-            )}
-          </div>
-          )
-         })}
-
-      {/* review popup */}
+          );
+        })}
+  
       {open && (
-        <div className="w-full fixed top-0 left-0 h-screen bg-[#0005] z-50 flex items-center justify-center">
-          <div className="w-[50%] h-min bg-[#fff] shadow rounded-md p-3">
+        <div className="w-full fixed top-0 left-0 h-screen bg-[#000000cc] z-50 flex items-center justify-center">
+          <div className="w-[50%] h-min bg-[#1c1c1c] shadow rounded-md p-3">
             <div className="w-full flex justify-end p-3">
               <RxCross1
                 size={30}
                 onClick={() => setOpen(false)}
-                className="cursor-pointer"
+                className="cursor-pointer text-white"
               />
             </div>
             <h2 className="text-[30px] font-[500] font-Poppins text-center">
@@ -139,11 +137,10 @@ const UserOrderDetails = () => {
                 </h4>
               </div>
             </div>
-
+  
             <br />
             <br />
-
-            {/* ratings */}
+  
             <h5 className="pl-3 text-[20px] font-[500]">
               Give a Rating <span className="text-red-500">*</span>
             </h5>
@@ -172,7 +169,7 @@ const UserOrderDetails = () => {
             <div className="w-full ml-3">
               <label className="block text-[20px] font-[500]">
                 Write a comment
-                <span className="ml-1 font-[400] text-[16px] text-[#00000052]">
+                <span className="ml-1 font-[400] text-[16px] text-gray-400">
                   (optional)
                 </span>
               </label>
@@ -183,12 +180,12 @@ const UserOrderDetails = () => {
                 rows="5"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                placeholder="How was your product? write your expresion about it!"
-                className="mt-2 w-[95%] border p-2 outline-none"
+                placeholder="How was your product? Write your expression about it!"
+                className="mt-2 w-[95%] border p-2 outline-none bg-black text-white border-gray-600"
               ></textarea>
             </div>
             <div
-              className={`${styles.button} text-white text-[20px] ml-3`}
+              className={`${styles.button} bg-white text-black text-[20px] ml-3`}
               onClick={rating > 1 ? reviewHandler : null}
             >
               Submit
@@ -196,8 +193,8 @@ const UserOrderDetails = () => {
           </div>
         </div>
       )}
-
-      <div className="border-t w-full text-right">
+  
+      <div className="border-t border-gray-600 w-full text-right">
         <h5 className="pt-3 text-[18px]">
           Total Price: <strong>US${data?.totalPrice}</strong>
         </h5>
@@ -223,23 +220,25 @@ const UserOrderDetails = () => {
             {data?.paymentInfo?.status ? data?.paymentInfo?.status : "Not Paid"}
           </h4>
           <br />
-           {
-            data?.status === "Delivered" && (
-              <div className={`${styles.button} text-white`}
+          {data?.status === "Delivered" && (
+            <div
+              className={`${styles.button} bg-white text-black`}
               onClick={refundHandler}
-              >Give a Refund</div>
-            )
-           }
+            >
+              Give a Refund
+            </div>
+          )}
         </div>
       </div>
       <br />
       <Link to="/">
-        <div className={`${styles.button} text-white`}>Send Message</div>
+        <div className={`${styles.button} bg-white text-black`}>Send Message</div>
       </Link>
       <br />
       <br />
     </div>
   );
+  
 };
 
 export default UserOrderDetails;

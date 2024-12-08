@@ -43,64 +43,74 @@ const ShopInfo = ({ isOwner }) => {
   const averageRating = totalRatings / totalReviewsLength || 0;
 
   return (
-   <>
-   {
-    isLoading  ? (
-      <Loader />
-    ) : (
-      <div>
-      <div className="w-full py-5">
-        <div className="w-full flex item-center justify-center">
-          <img
-            src={`${data.avatar?.url}`}
-            alt=""
-            className="w-[150px] h-[150px] object-cover rounded-full"
-          />
-        </div>
-        <h3 className="text-center py-2 text-[20px]">{data.name}</h3>
-        <p className="text-[16px] text-[#000000a6] p-[10px] flex items-center">
-          {data.description}
-        </p>
-      </div>
-      <div className="p-3">
-        <h5 className="font-[600]">Address</h5>
-        <h4 className="text-[#000000a6]">{data.address}</h4>
-      </div>
-      <div className="p-3">
-        <h5 className="font-[600]">Phone Number</h5>
-        <h4 className="text-[#000000a6]">{data.phoneNumber}</h4>
-      </div>
-      <div className="p-3">
-        <h5 className="font-[600]">Total Products</h5>
-        <h4 className="text-[#000000a6]">{products && products.length}</h4>
-      </div>
-      <div className="p-3">
-        <h5 className="font-[600]">Shop Ratings</h5>
-        <h4 className="text-[#000000b0]">{averageRating}/5</h4>
-      </div>
-      <div className="p-3">
-        <h5 className="font-[600]">Joined On</h5>
-        <h4 className="text-[#000000b0]">{data?.createdAt?.slice(0, 10)}</h4>
-      </div>
-      {isOwner && (
-        <div className="py-3 px-4">
-           <Link to="/settings">
-           <div className={`${styles.button} !w-full !h-[42px] !rounded-[5px]`}>
-            <span className="text-white">Edit Shop</span>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="w-full py-5 bg-[#111827] text-white">
+          {/* Profile Picture and Name */}
+          <div className="w-full flex item-center justify-center mb-4">
+            <img
+              src={`${data.avatar?.url}`}
+              alt="Profile"
+              className="w-[150px] h-[150px] object-cover rounded-full"
+            />
           </div>
-           </Link>
-          <div className={`${styles.button} !w-full !h-[42px] !rounded-[5px]`}
-          onClick={logoutHandler}
-          >
-            <span className="text-white">Log Out</span>
+          <h3 className="text-center py-2 text-[24px] font-semibold">{data.name}</h3>
+          <p className="text-[16px] text-[#ffffffb3] p-[10px] flex items-center">
+            {data.description}
+          </p>
+  
+          {/* Address Section */}
+          <div className="p-3 mt-4 border-t border-[#ffffff1a]">
+            <h5 className="font-semibold text-[18px]">Address</h5>
+            <h4 className="text-[#ffffffb3]">{data.address}</h4>
           </div>
+  
+          {/* Phone Number Section */}
+          <div className="p-3 mt-4 border-t border-[#ffffff1a]">
+            <h5 className="font-semibold text-[18px]">Phone Number</h5>
+            <h4 className="text-[#ffffffb3]">{data.phoneNumber}</h4>
+          </div>
+  
+          {/* Total Products Section */}
+          <div className="p-3 mt-4 border-t border-[#ffffff1a]">
+            <h5 className="font-semibold text-[18px]">Total Products</h5>
+            <h4 className="text-[#ffffffb3]">{products && products.length}</h4>
+          </div>
+  
+          {/* Shop Ratings Section */}
+          <div className="p-3 mt-4 border-t border-[#ffffff1a]">
+            <h5 className="font-semibold text-[18px]">Shop Ratings</h5>
+            <h4 className="text-[#ffffffb3]">{averageRating}/5</h4>
+          </div>
+  
+          {/* Joined On Section */}
+          <div className="p-3 mt-4 border-t border-[#ffffff1a]">
+            <h5 className="font-semibold text-[18px]">Joined On</h5>
+            <h4 className="text-[#ffffffb3]">{data?.createdAt?.slice(0, 10)}</h4>
+          </div>
+  
+          {isOwner && (
+            <div className="py-3 px-4 mt-6">
+              <Link to="/settings">
+                <div className="w-full py-2 px-4 bg-[#3a24db] rounded-[5px] text-center cursor-pointer mb-3">
+                  <span className="text-white">Edit Shop</span>
+                </div>
+              </Link>
+              <div
+                className="w-full py-2 px-4 bg-[#db243a] rounded-[5px] text-center cursor-pointer"
+                onClick={logoutHandler}
+              >
+                <span className="text-white">Log Out</span>
+              </div>
+            </div>
+          )}
         </div>
       )}
-    </div>
-    )
-   }
-   </>
+    </>
   );
+  
 };
 
 export default ShopInfo;

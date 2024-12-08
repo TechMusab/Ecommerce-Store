@@ -8,32 +8,27 @@ const Events = () => {
    
   return (
     <div>
-     {
-      !isLoading && (
-        <div className={`${styles.section}`}>
+  {!isLoading && (
+    <div className={`${styles.section} bg-gray-900 p-6 rounded-lg mb-12`}>
       <div className={`${styles.heading}`}>
-        <h1>Popular Events</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+          Popular Events
+        </h1>
       </div>
 
-      <div className="w-full grid">
-         {
-          allEvents.length !== 0 && (
-            <EventCard data={allEvents && allEvents[0]} />
-          )
-         }
-         <h4>{
-           allEvents?.length === 0 && (
-            'No Events have!'
-           )
-          }
-
-         </h4>
+      <div className="w-full grid gap-6">
+        {allEvents.length !== 0 ? (
+          <EventCard data={allEvents && allEvents[0]} />
+        ) : (
+          <h4 className="text-center text-gray-400 text-lg font-semibold">
+            No Events Available!
+          </h4>
+        )}
       </div>
-     
     </div>
-      )
-     }
-  </div>
+  )}
+</div>
+
   )
 }
 

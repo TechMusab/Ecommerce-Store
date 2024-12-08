@@ -70,104 +70,127 @@ const ProductDetailsCard = ({ setOpen, data }) => {
   };
 
   return (
-    <div className="bg-[#fff]">
+    <div className="bg-gray-900 text-white">
       {data ? (
-        <div className="fixed w-full h-screen top-0 left-0 bg-[#00000030] z-40 flex items-center justify-center">
-          <div className="w-[90%] 800px:w-[60%] h-[90vh] overflow-y-scroll 800px:h-[75vh] bg-white rounded-md shadow-sm relative p-4">
+        <div className="fixed inset-0 bg-black bg-opacity-70 z-40 flex items-center justify-center">
+          <div className="w-[90%] 800px:w-[60%] h-[90vh] overflow-y-auto 800px:h-[75vh] bg-gray-800 rounded-lg shadow-2xl relative p-6">
+            {/* Close Button */}
             <RxCross1
               size={30}
-              className="absolute right-3 top-3 z-50"
+              className="absolute right-4 top-4 cursor-pointer text-gray-300 hover:text-gray-100 transition-colors"
               onClick={() => setOpen(false)}
             />
-
-            <div className="block w-full 800px:flex">
-              <div className="w-full 800px:w-[50%]">
-                <img src={`${data.images && data.images[0]?.url}`} alt="" />
-                <div className="flex">
-                  <Link to={`/shop/preview/${data.shop._id}`} className="flex">
+  
+            <div className="flex flex-col 800px:flex-row gap-6">
+              {/* Product Image Section */}
+              <div className="w-full 800px:w-1/2">
+                <img
+                  src={`${data.images && data.images[0]?.url}`}
+                  alt="Product"
+                  className="w-full h-auto rounded-md shadow-md"
+                />
+  
+                <div className="flex items-center mt-5 gap-3">
+                  <Link
+                    to={`/shop/preview/${data.shop._id}`}
+                    className="flex items-center"
+                  >
                     <img
                       src={`${data.images && data.images[0]?.url}`}
-                      alt=""
-                      className="w-[50px] h-[50px] rounded-full mr-2"
+                      alt="Shop Logo"
+                      className="w-[50px] h-[50px] rounded-full shadow-md"
                     />
-                    <div>
-                      <h3 className={`${styles.shop_name}`}>
+                    <div className="ml-3">
+                      <h3 className="text-teal-400 font-semibold text-lg">
                         {data.shop.name}
                       </h3>
-                      <h5 className="pb-3 text-[15px]">{data?.ratings} Ratings</h5>
+                      <h5 className="text-sm text-gray-400">
+                        {data?.ratings} Ratings
+                      </h5>
                     </div>
                   </Link>
                 </div>
-                <div
-                  className={`${styles.button} bg-[#000] mt-4 rounded-[4px] h-11`}
+  
+                <button
+                  className="mt-5 bg-teal-500 text-white font-bold py-2 px-4 rounded-md hover:bg-teal-600 transition duration-300"
                   onClick={handleMessageSubmit}
                 >
-                  <span className="text-[#fff] flex items-center">
-                    Send Message <AiOutlineMessage className="ml-1" />
+                  <span className="flex items-center">
+                    Send Message <AiOutlineMessage className="ml-2" />
                   </span>
-                </div>
-                <h5 className="text-[16px] text-[red] mt-5">(50) Sold out</h5>
+                </button>
+  
+                <p className="text-red-400 text-sm mt-4">(50) Sold out</p>
               </div>
-
-              <div className="w-full 800px:w-[50%] pt-5 pl-[5px] pr-[5px]">
-                <h1 className={`${styles.productTitle} text-[20px]`}>
+  
+              {/* Product Details Section */}
+              <div className="w-full 800px:w-1/2">
+                <h1 className="text-2xl font-bold text-teal-400 mb-3">
                   {data.name}
                 </h1>
-                <p>{data.description}</p>
-
-                <div className="flex pt-3">
-                  <h4 className={`${styles.productDiscountPrice}`}>
+                <p className="text-gray-300 mb-4">{data.description}</p>
+  
+                {/* Pricing */}
+                <div className="flex items-center mb-4">
+                  <h4 className="text-2xl font-bold text-teal-400">
                     {data.discountPrice}$
                   </h4>
-                  <h3 className={`${styles.price}`}>
-                    {data.originalPrice ? data.originalPrice + "$" : null}
-                  </h3>
+                  {data.originalPrice && (
+                    <h4 className="text-lg text-gray-400 line-through ml-4">
+                      {data.originalPrice}$
+                    </h4>
+                  )}
                 </div>
-                <div className="flex items-center mt-12 justify-between pr-3">
-                  <div>
+  
+                {/* Quantity Selector */}
+                <div className="flex items-center gap-6 mb-6">
+                  <div className="flex items-center">
                     <button
-                      className="bg-gradient-to-r from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                      className="bg-gray-700 text-white px-4 py-2 rounded-l-md hover:bg-gray-600 transition duration-300"
                       onClick={decrementCount}
                     >
                       -
                     </button>
-                    <span className="bg-gray-200 text-gray-800 font-medium px-4 py-[11px]">
+                    <span className="bg-gray-800 text-white px-6 py-2">
                       {count}
                     </span>
                     <button
-                      className="bg-gradient-to-r from-teal-400 to-teal-500 text-white font-bold rounded-l px-4 py-2 shadow-lg hover:opacity-75 transition duration-300 ease-in-out"
+                      className="bg-gray-700 text-white px-4 py-2 rounded-r-md hover:bg-gray-600 transition duration-300"
                       onClick={incrementCount}
                     >
                       +
                     </button>
                   </div>
+  
+                  {/* Wishlist */}
                   <div>
                     {click ? (
                       <AiFillHeart
                         size={30}
-                        className="cursor-pointer"
+                        className="cursor-pointer text-red-500"
                         onClick={() => removeFromWishlistHandler(data)}
-                        color={click ? "red" : "#333"}
                         title="Remove from wishlist"
                       />
                     ) : (
                       <AiOutlineHeart
                         size={30}
-                        className="cursor-pointer"
+                        className="cursor-pointer text-gray-300 hover:text-white transition-colors"
                         onClick={() => addToWishlistHandler(data)}
                         title="Add to wishlist"
                       />
                     )}
                   </div>
                 </div>
-                <div
-                  className={`${styles.button} mt-6 rounded-[4px] h-11 flex items-center`}
+  
+                {/* Add to Cart */}
+                <button
+                  className="bg-teal-500 text-white font-bold py-2 px-6 rounded-md hover:bg-teal-600 transition duration-300 w-full"
                   onClick={() => addToCartHandler(data._id)}
                 >
-                  <span className="text-[#fff] flex items-center">
-                    Add to cart <AiOutlineShoppingCart className="ml-1" />
+                  <span className="flex items-center justify-center">
+                    Add to Cart <AiOutlineShoppingCart className="ml-2" />
                   </span>
-                </div>
+                </button>
               </div>
             </div>
           </div>
@@ -175,6 +198,8 @@ const ProductDetailsCard = ({ setOpen, data }) => {
       ) : null}
     </div>
   );
+  
+  
 };
 
 export default ProductDetailsCard;

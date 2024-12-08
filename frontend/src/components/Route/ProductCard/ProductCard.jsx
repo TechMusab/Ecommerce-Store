@@ -62,82 +62,77 @@ const ProductCard = ({ data,isEvent }) => {
 
   return (
     <>
-      <div className="w-full h-[370px] bg-white rounded-lg shadow-sm p-3 relative cursor-pointer">
-        <div className="flex justify-end"></div>
-        <Link to={`${isEvent === true ? `/product/${data._id}?isEvent=true` : `/product/${data._id}`}`}>
-          <img
-            src={`${data.images && data.images[0]?.url}`}
-            alt=""
-            className="w-full h-[170px] object-contain"
-          />
-        </Link>
-        <Link to={`/shop/preview/${data?.shop._id}`}>
-          <h5 className={`${styles.shop_name}`}>{data.shop.name}</h5>
-        </Link>
-        <Link to={`${isEvent === true ? `/product/${data._id}?isEvent=true` : `/product/${data._id}`}`}>
-          <h4 className="pb-3 font-[500]">
-            {data.name.length > 40 ? data.name.slice(0, 40) + "..." : data.name}
-          </h4>
-
-          <div className="flex">
+    <div className="w-full h-[370px] bg-gray-900 rounded-lg shadow-lg p-4 relative cursor-pointer hover:shadow-xl transition-all duration-300">
+      <div className="flex justify-end"></div>
+      <Link to={`${isEvent === true ? `/product/${data._id}?isEvent=true` : `/product/${data._id}`}`}>
+        <img
+          src={`${data.images && data.images[0]?.url}`}
+          alt=""
+          className="w-full h-[170px] object-cover rounded-md"
+        />
+      </Link>
+  
+      <Link to={`/shop/preview/${data?.shop._id}`}>
+        <h5 className="text-white font-semibold text-lg py-2">{data.shop.name}</h5>
+      </Link>
+  
+      <Link to={`${isEvent === true ? `/product/${data._id}?isEvent=true` : `/product/${data._id}`}`}>
+        <h4 className="text-white font-medium pb-3">{data.name.length > 40 ? data.name.slice(0, 40) + "..." : data.name}</h4>
+  
+        <div className="flex items-center text-gray-400">
           <Ratings rating={data?.ratings} />
-          </div>
-
-          <div className="py-2 flex items-center justify-between">
-            <div className="flex">
-              <h5 className={`${styles.productDiscountPrice}`}>
-                {data.originalPrice === 0
-                  ? data.originalPrice
-                  : data.discountPrice}
-                $
-              </h5>
-              <h4 className={`${styles.price}`}>
-                {data.originalPrice ? data.originalPrice + " $" : null}
-              </h4>
-            </div>
-            <span className="font-[400] text-[17px] text-[#68d284]">
-              {data?.sold_out} sold
-            </span>
-          </div>
-        </Link>
-
-        {/* side options */}
-        <div>
-          {click ? (
-            <AiFillHeart
-              size={22}
-              className="cursor-pointer absolute right-2 top-5"
-              onClick={() => removeFromWishlistHandler(data)}
-              color={click ? "red" : "#333"}
-              title="Remove from wishlist"
-            />
-          ) : (
-            <AiOutlineHeart
-              size={22}
-              className="cursor-pointer absolute right-2 top-5"
-              onClick={() => addToWishlistHandler(data)}
-              color={click ? "red" : "#333"}
-              title="Add to wishlist"
-            />
-          )}
-          <AiOutlineEye
-            size={22}
-            className="cursor-pointer absolute right-2 top-14"
-            onClick={() => setOpen(!open)}
-            color="#333"
-            title="Quick view"
-          />
-          <AiOutlineShoppingCart
-            size={25}
-            className="cursor-pointer absolute right-2 top-24"
-            onClick={() => addToCartHandler(data._id)}
-            color="#444"
-            title="Add to cart"
-          />
-          {open ? <ProductDetailsCard setOpen={setOpen} data={data} /> : null}
         </div>
+  
+        <div className="py-2 flex items-center justify-between text-white">
+          <div className="flex">
+            <h5 className="text-green-400 font-bold">
+              {data.originalPrice === 0 ? data.originalPrice : data.discountPrice}$
+            </h5>
+            <h4 className="line-through ml-2 text-gray-500">
+              {data.originalPrice ? data.originalPrice + " $" : null}
+            </h4>
+          </div>
+          <span className="text-sm text-gray-500">{data?.sold_out} sold</span>
+        </div>
+      </Link>
+  
+      {/* Side options */}
+      <div>
+        {click ? (
+          <AiFillHeart
+            size={22}
+            className="cursor-pointer absolute right-2 top-5 text-red-500"
+            onClick={() => removeFromWishlistHandler(data)}
+            title="Remove from wishlist"
+          />
+        ) : (
+          <AiOutlineHeart
+            size={22}
+            className="cursor-pointer absolute right-2 top-5 text-white"
+            onClick={() => addToWishlistHandler(data)}
+            title="Add to wishlist"
+          />
+        )}
+  
+        <AiOutlineEye
+          size={22}
+          className="cursor-pointer absolute right-2 top-14 text-white"
+          onClick={() => setOpen(!open)}
+          title="Quick view"
+        />
+  
+        <AiOutlineShoppingCart
+          size={25}
+          className="cursor-pointer absolute right-2 top-24 text-white"
+          onClick={() => addToCartHandler(data._id)}
+          title="Add to cart"
+        />
+  
+        {open && <ProductDetailsCard setOpen={setOpen} data={data} />}
       </div>
-    </>
+    </div>
+  </>
+  
   );
 };
 

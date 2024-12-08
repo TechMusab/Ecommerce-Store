@@ -77,7 +77,7 @@ const ProfileContent = ({ active }) => {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full text-white">
       {/* profile */}
       {active === 1 && (
         <>
@@ -210,19 +210,20 @@ const AllOrders = () => {
   }, []);
 
   const columns = [
-    { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
-
+    { 
+      field: "id", 
+      headerName: "Order ID", 
+      minWidth: 150, 
+      flex: 0.7 
+    },
     {
       field: "status",
       headerName: "Status",
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
-        // Directly access the 'status' property from 'params.row'
-        return params.row.status === "Delivered"
-          ? "greenColor"
-          : "redColor";
-      },      
+        return params.row.status === "Delivered" ? "greenColor" : "redColor";
+      },
     },
     {
       field: "itemsQty",
@@ -231,7 +232,6 @@ const AllOrders = () => {
       minWidth: 130,
       flex: 0.7,
     },
-
     {
       field: "total",
       headerName: "Total",
@@ -239,7 +239,6 @@ const AllOrders = () => {
       minWidth: 130,
       flex: 0.8,
     },
-
     {
       field: " ",
       flex: 1,
@@ -274,17 +273,43 @@ const AllOrders = () => {
     });
 
   return (
-    <div className="pl-8 pt-1">
+    <div className="pl-8 pt-1 bg-[#111827] text-white h-full min-h-screen">
       <DataGrid
         rows={row}
         columns={columns}
         pageSize={10}
         disableSelectionOnClick
         autoHeight
+        sx={{
+          "& .MuiDataGrid-root": {
+            backgroundColor: "#1f2937",
+            color: "white",
+          },
+          "& .MuiDataGrid-cell": {
+            color: "white",
+            borderColor: "#374151",
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            backgroundColor: "#374151",
+            color: "white",
+            borderColor: "#374151",
+          },
+          "& .MuiDataGrid-footerContainer": {
+            backgroundColor: "#1f2937",
+            color: "white",
+          },
+          "& .greenColor": {
+            color: "#22c55e", // Tailwind green-500
+          },
+          "& .redColor": {
+            color: "#ef4444", // Tailwind red-500
+          },
+        }}
       />
     </div>
   );
 };
+
 
 const AllRefundOrders = () => {
   const { user } = useSelector((state) => state.user);
@@ -300,18 +325,14 @@ const AllRefundOrders = () => {
 
   const columns = [
     { field: "id", headerName: "Order ID", minWidth: 150, flex: 0.7 },
-
     {
       field: "status",
       headerName: "Status",
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
-        // Directly access the 'status' field from 'params.row'
-        return params.row.status === "Delivered"
-          ? "greenColor"
-          : "redColor";
-      },      
+        return params.row.status === "Delivered" ? "greenColor" : "redColor";
+      },
     },
     {
       field: "itemsQty",
@@ -320,7 +341,6 @@ const AllRefundOrders = () => {
       minWidth: 130,
       flex: 0.7,
     },
-
     {
       field: "total",
       headerName: "Total",
@@ -328,7 +348,6 @@ const AllRefundOrders = () => {
       minWidth: 130,
       flex: 0.8,
     },
-
     {
       field: " ",
       flex: 1,
@@ -363,17 +382,43 @@ const AllRefundOrders = () => {
     });
 
   return (
-    <div className="pl-8 pt-1">
+    <div className="pl-8 pt-1 bg-[#111827] text-white h-full min-h-screen">
       <DataGrid
         rows={row}
         columns={columns}
         pageSize={10}
         autoHeight
         disableSelectionOnClick
+        sx={{
+          "& .MuiDataGrid-root": {
+            backgroundColor: "#1f2937",
+            color: "white",
+          },
+          "& .MuiDataGrid-cell": {
+            color: "white",
+            borderColor: "#374151",
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            backgroundColor: "#374151",
+            color: "white",
+            borderColor: "#374151",
+          },
+          "& .MuiDataGrid-footerContainer": {
+            backgroundColor: "#1f2937",
+            color: "white",
+          },
+          "& .greenColor": {
+            color: "#22c55e", // Tailwind green-500
+          },
+          "& .redColor": {
+            color: "#ef4444", // Tailwind red-500
+          },
+        }}
       />
     </div>
   );
 };
+
 
 const TrackOrder = () => {
   const { user } = useSelector((state) => state.user);
@@ -396,7 +441,7 @@ const TrackOrder = () => {
         return params.row.status === "Delivered"
           ? "greenColor"
           : "redColor";
-      },      
+      },
     },
     {
       field: "itemsQty",
@@ -448,17 +493,43 @@ const TrackOrder = () => {
     });
 
   return (
-    <div className="pl-8 pt-1">
+    <div className="pl-8 pt-1 bg-[#111827] text-white h-full min-h-screen">
       <DataGrid
         rows={row}
         columns={columns}
         pageSize={10}
-        disableSelectionOnClick
         autoHeight
+        disableSelectionOnClick
+        sx={{
+          "& .MuiDataGrid-root": {
+            backgroundColor: "#1f2937",
+            color: "white",
+          },
+          "& .MuiDataGrid-cell": {
+            color: "white",
+            borderColor: "#374151",
+          },
+          "& .MuiDataGrid-columnHeaders": {
+            backgroundColor: "#374151",
+            color: "white",
+            borderColor: "#374151",
+          },
+          "& .MuiDataGrid-footerContainer": {
+            backgroundColor: "#1f2937",
+            color: "white",
+          },
+          "& .greenColor": {
+            color: "#22c55e", // Tailwind green-500
+          },
+          "& .redColor": {
+            color: "#ef4444", // Tailwind red-500
+          },
+        }}
       />
     </div>
   );
 };
+
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -484,9 +555,10 @@ const ChangePassword = () => {
         toast.error(error.response.data.message);
       });
   };
+
   return (
-    <div className="w-full px-5">
-      <h1 className="block text-[25px] text-center font-[600] text-[#000000ba] pb-2">
+    <div className="w-full px-5 bg-[#111827] text-white min-h-screen">
+      <h1 className="block text-[25px] text-center font-[600] text-[#ffffff] pb-2">
         Change Password
       </h1>
       <div className="w-full">
@@ -495,37 +567,37 @@ const ChangePassword = () => {
           onSubmit={passwordChangeHandler}
           className="flex flex-col items-center"
         >
-          <div className=" w-[100%] 800px:w-[50%] mt-5">
+          <div className="w-[100%] 800px:w-[50%] mt-5">
             <label className="block pb-2">Enter your old password</label>
             <input
               type="password"
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={`${styles.input} !w-[95%] mb-4 800px:mb-0 bg-[#2d3748] text-white border-[#4a5568] focus:outline-none`}
               required
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
             />
           </div>
-          <div className=" w-[100%] 800px:w-[50%] mt-2">
+          <div className="w-[100%] 800px:w-[50%] mt-2">
             <label className="block pb-2">Enter your new password</label>
             <input
               type="password"
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={`${styles.input} !w-[95%] mb-4 800px:mb-0 bg-[#2d3748] text-white border-[#4a5568] focus:outline-none`}
               required
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
             />
           </div>
-          <div className=" w-[100%] 800px:w-[50%] mt-2">
+          <div className="w-[100%] 800px:w-[50%] mt-2">
             <label className="block pb-2">Enter your confirm password</label>
             <input
               type="password"
-              className={`${styles.input} !w-[95%] mb-4 800px:mb-0`}
+              className={`${styles.input} !w-[95%] mb-4 800px:mb-0 bg-[#2d3748] text-white border-[#4a5568] focus:outline-none`}
               required
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <input
-              className={`w-[95%] h-[40px] border border-[#3a24db] text-center text-[#3a24db] rounded-[3px] mt-8 cursor-pointer`}
+              className="w-[95%] h-[40px] border border-[#3a24db] text-center text-[#3a24db] rounded-[3px] mt-8 cursor-pointer bg-[#1f2937] hover:bg-[#3a24db] transition duration-300 ease-in-out"
               required
               value="Update"
               type="submit"
@@ -536,6 +608,7 @@ const ChangePassword = () => {
     </div>
   );
 };
+
 
 const Address = () => {
   const [open, setOpen] = useState(false);
@@ -592,10 +665,10 @@ const Address = () => {
   };
 
   return (
-    <div className="w-full px-5">
+    <div className="w-full px-5 bg-[#111827] text-white min-h-screen">
       {open && (
-        <div className="fixed w-full h-screen bg-[#0000004b] top-0 left-0 flex items-center justify-center ">
-          <div className="w-[35%] h-[80vh] bg-white rounded shadow relative overflow-y-scroll">
+        <div className="fixed w-full h-screen bg-[#0000004b] top-0 left-0 flex items-center justify-center">
+          <div className="w-[35%] h-[80vh] bg-[#2d3748] rounded shadow relative overflow-y-scroll">
             <div className="w-full flex justify-end p-3">
               <RxCross1
                 size={30}
@@ -603,7 +676,7 @@ const Address = () => {
                 onClick={() => setOpen(false)}
               />
             </div>
-            <h1 className="text-center text-[25px] font-Poppins">
+            <h1 className="text-center text-[25px] font-Poppins text-white">
               Add New Address
             </h1>
             <div className="w-full">
@@ -616,7 +689,7 @@ const Address = () => {
                       id=""
                       value={country}
                       onChange={(e) => setCountry(e.target.value)}
-                      className="w-[95%] border h-[40px] rounded-[5px]"
+                      className="w-[95%] border h-[40px] rounded-[5px] bg-[#2d3748] text-white border-[#4a5568] focus:outline-none"
                     >
                       <option value="" className="block border pb-2">
                         choose your country
@@ -641,7 +714,7 @@ const Address = () => {
                       id=""
                       value={city}
                       onChange={(e) => setCity(e.target.value)}
-                      className="w-[95%] border h-[40px] rounded-[5px]"
+                      className="w-[95%] border h-[40px] rounded-[5px] bg-[#2d3748] text-white border-[#4a5568] focus:outline-none"
                     >
                       <option value="" className="block border pb-2">
                         choose your city
@@ -663,7 +736,7 @@ const Address = () => {
                     <label className="block pb-2">Address 1</label>
                     <input
                       type="address"
-                      className={`${styles.input}`}
+                      className={`${styles.input} bg-[#2d3748] text-white border-[#4a5568]`}
                       required
                       value={address1}
                       onChange={(e) => setAddress1(e.target.value)}
@@ -673,7 +746,7 @@ const Address = () => {
                     <label className="block pb-2">Address 2</label>
                     <input
                       type="address"
-                      className={`${styles.input}`}
+                      className={`${styles.input} bg-[#2d3748] text-white border-[#4a5568]`}
                       required
                       value={address2}
                       onChange={(e) => setAddress2(e.target.value)}
@@ -684,7 +757,7 @@ const Address = () => {
                     <label className="block pb-2">Zip Code</label>
                     <input
                       type="number"
-                      className={`${styles.input}`}
+                      className={`${styles.input} bg-[#2d3748] text-white border-[#4a5568]`}
                       required
                       value={zipCode}
                       onChange={(e) => setZipCode(e.target.value)}
@@ -698,7 +771,7 @@ const Address = () => {
                       id=""
                       value={addressType}
                       onChange={(e) => setAddressType(e.target.value)}
-                      className="w-[95%] border h-[40px] rounded-[5px]"
+                      className="w-[95%] border h-[40px] rounded-[5px] bg-[#2d3748] text-white border-[#4a5568] focus:outline-none"
                     >
                       <option value="" className="block border pb-2">
                         Choose your Address Type
@@ -716,10 +789,10 @@ const Address = () => {
                     </select>
                   </div>
 
-                  <div className=" w-full pb-2">
+                  <div className="w-full pb-2">
                     <input
                       type="submit"
-                      className={`${styles.input} mt-5 cursor-pointer`}
+                      className="w-[95%] h-[40px] text-white bg-[#3a24db] rounded-[5px] mt-5 cursor-pointer hover:bg-[#2b1ca2] transition"
                       required
                       readOnly
                     />
@@ -731,40 +804,40 @@ const Address = () => {
         </div>
       )}
       <div className="flex w-full items-center justify-between">
-        <h1 className="text-[25px] font-[600] text-[#000000ba] pb-2">
+        <h1 className="text-[25px] font-[600] text-[#ffffff] pb-2">
           My Addresses
         </h1>
         <div
-          className={`${styles.button} !rounded-md`}
+          className="bg-[#3a24db] text-white rounded-md px-5 py-2 cursor-pointer"
           onClick={() => setOpen(true)}
         >
-          <span className="text-[#fff]">Add New</span>
+          <span>Add New</span>
         </div>
       </div>
       <br />
       {user &&
         user.addresses.map((item, index) => (
           <div
-            className="w-full bg-white h-min 800px:h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10 mb-5"
+            className="w-full bg-[#2d3748] h-min 800px:h-[70px] rounded-[4px] flex items-center px-3 shadow justify-between pr-10 mb-5"
             key={index}
           >
             <div className="flex items-center">
-              <h5 className="pl-5 font-[600]">{item.addressType}</h5>
+              <h5 className="pl-5 font-[600] text-white">{item.addressType}</h5>
             </div>
             <div className="pl-8 flex items-center">
-              <h6 className="text-[12px] 800px:text-[unset]">
+              <h6 className="text-[12px] 800px:text-[unset] text-white">
                 {item.address1} {item.address2}
               </h6>
             </div>
             <div className="pl-8 flex items-center">
-              <h6 className="text-[12px] 800px:text-[unset]">
+              <h6 className="text-[12px] 800px:text-[unset] text-white">
                 {user && user.phoneNumber}
               </h6>
             </div>
             <div className="min-w-[10%] flex items-center justify-between pl-8">
               <AiOutlineDelete
                 size={25}
-                className="cursor-pointer"
+                className="cursor-pointer text-white"
                 onClick={() => handleDelete(item)}
               />
             </div>
@@ -772,11 +845,12 @@ const Address = () => {
         ))}
 
       {user && user.addresses.length === 0 && (
-        <h5 className="text-center pt-8 text-[18px]">
-          You not have any saved address!
+        <h5 className="text-center pt-8 text-[18px] text-white">
+          You don't have any saved address!
         </h5>
       )}
     </div>
   );
 };
+
 export default ProfileContent;
