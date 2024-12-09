@@ -13,11 +13,7 @@ const AdminHeader = () => {
       <div className="w-full h-[80px] bg-[#1a1a1a] shadow sticky top-0 left-0 z-30 flex items-center justify-between px-4">
         <div>
           <Link to="/">
-            <img
-              src="https://shopo.quomodothemes.website/assets/images/logo.svg"
-              alt=""
-              className="filter invert"
-            />
+          <h1 className="text-3xl text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">MSASTORE</h1>
           </Link>
         </div>
         <div className="flex items-center">
@@ -66,7 +62,6 @@ const AdminHeader = () => {
         </div>
       </div>
     );
-    
 }
 
 export default AdminHeader

@@ -7,8 +7,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { server } from "../../server";
 import styles from "../../styles/styles";
-import { Button } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import { Button } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import { MdTrackChanges } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
@@ -152,7 +152,7 @@ const ProfileContent = ({ active }) => {
                 </div>
               </div>
               <input
-                className={`w-[250px] h-[40px] border border-[#3a24db] text-center text-[#3a24db] rounded-[3px] mt-8 cursor-pointer`}
+                className={`${styles.button} w-[95%] h-[40px] border rounded-[3px] mt-8 cursor-pointer transition duration-300 ease-in-out`}
                 required
                 value="Update"
                 type="submit"
@@ -210,20 +210,19 @@ const AllOrders = () => {
   }, []);
 
   const columns = [
-    { 
-      field: "id", 
-      headerName: "Order ID", 
-      minWidth: 150, 
-      flex: 0.7 
+    {
+      field: "id",
+      headerName: "Order ID",
+      minWidth: 150,
+      flex: 0.7,
     },
     {
       field: "status",
       headerName: "Status",
       minWidth: 130,
       flex: 0.7,
-      cellClassName: (params) => {
-        return params.row.status === "Delivered" ? "greenColor" : "redColor";
-      },
+      cellClassName: (params) =>
+        params.row.status === "Delivered" ? "greenColor" : "redColor",
     },
     {
       field: "itemsQty",
@@ -248,55 +247,56 @@ const AllOrders = () => {
       sortable: false,
       renderCell: (params) => {
         return (
-          <>
-            <Link to={`/user/order/${params.id}`}>
-              <Button>
-                <AiOutlineArrowRight size={20} />
-              </Button>
-            </Link>
-          </>
+          <Link to={`/user/order/${params.id}`}>
+            <Button>
+              <AiOutlineArrowRight size={20} />
+            </Button>
+          </Link>
         );
       },
     },
   ];
 
-  const row = [];
+  const rows = [];
 
-  orders &&
-    orders.forEach((item) => {
-      row.push({
-        id: item._id,
-        itemsQty: item.cart.length,
-        total: "US$ " + item.totalPrice,
-        status: item.status,
-      });
+  orders?.forEach((item) => {
+    rows.push({
+      id: item._id,
+      itemsQty: item.cart.length,
+      total: "US$ " + item.totalPrice,
+      status: item.status,
     });
+  });
 
   return (
     <div className="pl-8 pt-1 bg-[#111827] text-white h-full min-h-screen">
       <DataGrid
-        rows={row}
+        rows={rows}
         columns={columns}
         pageSize={10}
         disableSelectionOnClick
         autoHeight
         sx={{
           "& .MuiDataGrid-root": {
-            backgroundColor: "#1f2937",
-            color: "white",
+            backgroundColor: "#111827", // Blackish theme
+            color: "white", // All text white
           },
           "& .MuiDataGrid-cell": {
             color: "white",
-            borderColor: "#374151",
+            borderColor: "#374151", // Darker borders
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: "#374151",
-            color: "white",
+            backgroundColor: "black", // Black background for headers
+            color: "black",
             borderColor: "#374151",
+            fontWeight: "bold",
           },
           "& .MuiDataGrid-footerContainer": {
-            backgroundColor: "#1f2937",
+            backgroundColor: "black", // Black background for footer
             color: "white",
+          },
+          "& .MuiTablePagination-root": {
+            color: "white", // Ensure pagination text is white
           },
           "& .greenColor": {
             color: "#22c55e", // Tailwind green-500
@@ -309,6 +309,7 @@ const AllOrders = () => {
     </div>
   );
 };
+
 
 
 const AllRefundOrders = () => {
@@ -399,13 +400,17 @@ const AllRefundOrders = () => {
             borderColor: "#374151",
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: "#374151",
-            color: "white",
+            backgroundColor: "black", // Black background for headers
+            color: "black",
             borderColor: "#374151",
+            fontWeight: "bold",
           },
           "& .MuiDataGrid-footerContainer": {
-            backgroundColor: "#1f2937",
+            backgroundColor: "black", // Black background for footer
             color: "white",
+          },
+          "& .MuiTablePagination-root": {
+            color: "white", // Ensure pagination text is white
           },
           "& .greenColor": {
             color: "#22c55e", // Tailwind green-500
@@ -418,7 +423,6 @@ const AllRefundOrders = () => {
     </div>
   );
 };
-
 
 const TrackOrder = () => {
   const { user } = useSelector((state) => state.user);
@@ -438,9 +442,7 @@ const TrackOrder = () => {
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
-        return params.row.status === "Delivered"
-          ? "greenColor"
-          : "redColor";
+        return params.row.status === "Delivered" ? "greenColor" : "redColor";
       },
     },
     {
@@ -510,13 +512,17 @@ const TrackOrder = () => {
             borderColor: "#374151",
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: "#374151",
-            color: "white",
+            backgroundColor: "black", // Black background for headers
+            color: "black",
             borderColor: "#374151",
+            fontWeight: "bold",
           },
           "& .MuiDataGrid-footerContainer": {
-            backgroundColor: "#1f2937",
+            backgroundColor: "black", // Black background for footer
             color: "white",
+          },
+          "& .MuiTablePagination-root": {
+            color: "white", // Ensure pagination text is white
           },
           "& .greenColor": {
             color: "#22c55e", // Tailwind green-500
@@ -529,7 +535,6 @@ const TrackOrder = () => {
     </div>
   );
 };
-
 
 const ChangePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -597,7 +602,7 @@ const ChangePassword = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <input
-              className="w-[95%] h-[40px] border border-[#3a24db] text-center text-[#3a24db] rounded-[3px] mt-8 cursor-pointer bg-[#1f2937] hover:bg-[#3a24db] transition duration-300 ease-in-out"
+              className={`${styles.button} w-[95%] h-[40px] border rounded-[3px] mt-8 cursor-pointer transition duration-300 ease-in-out`}
               required
               value="Update"
               type="submit"
@@ -608,7 +613,6 @@ const ChangePassword = () => {
     </div>
   );
 };
-
 
 const Address = () => {
   const [open, setOpen] = useState(false);

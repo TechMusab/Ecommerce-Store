@@ -44,7 +44,7 @@ import {
   AdminDashboardOrders,
   AdminDashboardProducts,
   AdminDashboardEvents,
-  AdminDashboardWithdraw
+  AdminDashboardWithdraw,
 } from "./routes/AdminRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -60,6 +60,7 @@ import axios from "axios";
 import { server } from "./server";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import SalesReport from "./components/Admin/SalesReport";
 
 const App = () => {
   const [stripeApikey, setStripeApiKey] = useState("");
@@ -263,7 +264,7 @@ const App = () => {
         <Route
           path="/admin/dashboard"
           element={
-            <ProtectedAdminRoute>
+            <ProtectedAdminRoute isAuthenticated={true}>
               <AdminDashboardPage />
             </ProtectedAdminRoute>
           }
@@ -271,7 +272,7 @@ const App = () => {
         <Route
           path="/admin-users"
           element={
-            <ProtectedAdminRoute>
+            <ProtectedAdminRoute isAuthenticated={true}>>
               <AdminDashboardUsers />
             </ProtectedAdminRoute>
           }
@@ -279,7 +280,7 @@ const App = () => {
         <Route
           path="/admin-sellers"
           element={
-            <ProtectedAdminRoute>
+            <ProtectedAdminRoute isAuthenticated={true}>>
               <AdminDashboardSellers />
             </ProtectedAdminRoute>
           }
@@ -287,32 +288,40 @@ const App = () => {
         <Route
           path="/admin-orders"
           element={
-            <ProtectedAdminRoute>
+            <ProtectedAdminRoute isAuthenticated={true}>>
               <AdminDashboardOrders />
             </ProtectedAdminRoute>
           }
         />
-         <Route
+        <Route
           path="/admin-products"
           element={
-            <ProtectedAdminRoute>
+            <ProtectedAdminRoute isAuthenticated={true}>>
               <AdminDashboardProducts />
             </ProtectedAdminRoute>
           }
         />
-         <Route
+        <Route
           path="/admin-events"
           element={
-            <ProtectedAdminRoute>
+            <ProtectedAdminRoute isAuthenticated={true}>>
               <AdminDashboardEvents />
             </ProtectedAdminRoute>
           }
         />
-         <Route
+        <Route
           path="/admin-withdraw-request"
           element={
-            <ProtectedAdminRoute>
+            <ProtectedAdminRoute isAuthenticated={true}>
               <AdminDashboardWithdraw />
+            </ProtectedAdminRoute>
+          }
+        />
+        <Route
+         path="/sales-report"
+          element={
+            <ProtectedAdminRoute isAuthenticated={true}>
+               <SalesReport />
             </ProtectedAdminRoute>
           }
         />

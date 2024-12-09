@@ -180,8 +180,6 @@ router.put(
 // all products --- for admin
 router.get(
   "/admin-all-products",
-  isAuthenticated,
-  isAdmin("Admin"),
   catchAsyncErrors(async (req, res, next) => {
     try {
       const products = await Product.find().sort({

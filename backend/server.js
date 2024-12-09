@@ -1,6 +1,7 @@
 const app = require("./app");
 const connectDatabase = require("./db/Database");
 const cloudinary = require("cloudinary");
+const seedAdminUser = require("./seedAdmin");
 
 // Handling uncaught Exception
 process.on("uncaughtException", (err) => {
@@ -15,8 +16,8 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   });
 }
 
-// connect db
 connectDatabase();
+seedAdminUser();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,

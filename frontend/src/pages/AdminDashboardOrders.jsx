@@ -26,9 +26,8 @@ const AdminDashboardOrders = () => {
       minWidth: 130,
       flex: 0.7,
       cellClassName: (params) => {
-        return params.getValue(params.id, "status") === "Delivered"
-          ? "greenColor"
-          : "redColor";
+        const status = params.row.status;
+        return status === "Delivered" ? "greenColor" : "redColor";
       },
     },
     {
@@ -47,12 +46,12 @@ const AdminDashboardOrders = () => {
       flex: 0.8,
     },
     {
-        field: "createdAt",
-        headerName: "Order Date",
-        type: "number",
-        minWidth: 130,
-        flex: 0.8,
-      },
+      field: "createdAt",
+      headerName: "Order Date",
+      type: "number",
+      minWidth: 130,
+      flex: 0.8,
+    },
   ];
 
   const row = [];
@@ -63,11 +62,12 @@ const AdminDashboardOrders = () => {
         itemsQty: item?.cart?.reduce((acc, item) => acc + item.qty, 0),
         total: item?.totalPrice + " $",
         status: item?.status,
-        createdAt: item?.createdAt.slice(0,10),
+        createdAt: item?.createdAt.slice(0, 10),
       });
     });
+
   return (
-    <div>
+    <div className="text-white">
       <AdminHeader />
       <div className="w-full flex">
         <div className="flex items-start justify-between w-full">
@@ -83,6 +83,7 @@ const AdminDashboardOrders = () => {
                 pageSize={4}
                 disableSelectionOnClick
                 autoHeight
+                getCellClassName={() => "text-white"} // This will apply text-white to all cells
               />
             </div>
           </div>

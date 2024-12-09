@@ -7,6 +7,7 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const jwt = require("jsonwebtoken");
 const sendMail = require("../utils/sendMail");
 const sendToken = require("../utils/jwtToken");
+const Order= require("../model/order");
 const { isAuthenticated, isAdmin } = require("../middleware/auth");
 
 
@@ -366,9 +367,7 @@ router.get(
 
 // all users --- for admin
 router.get(
-  "/admin-all-users",
-  isAuthenticated,
-  isAdmin("Admin"),
+  "/admin/users", // Specify the path as a string // Middleware to check admin role
   catchAsyncErrors(async (req, res, next) => {
     try {
       const users = await User.find().sort({
@@ -384,11 +383,10 @@ router.get(
   })
 );
 
+
 // delete users --- admin
 router.delete(
   "/delete-user/:id",
-  isAuthenticated,
-  isAdmin("Admin"),
   catchAsyncErrors(async (req, res, next) => {
     try {
       const user = await User.findById(req.params.id);
@@ -408,6 +406,42 @@ router.delete(
       res.status(201).json({
         success: true,
         message: "User deleted successfully!",
+      });
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 500));
+    }
+  })
+);
+router.get(
+  "/sales-report",
+  catchAsyncErrors(async (req, res, next) => {
+    try {
+      // Fetch all orders
+      const orders = await Order.find();
+
+      if (!orders.length) {
+        return res.status(200).json({
+          success: true,
+          message: "No orders found.",
+          totalRevenue: 0,
+          ordersCount: 0,
+          orders: [],
+        });
+      }
+
+      // Calculate total revenue
+      const totalRevenue = orders.reduce((acc, order) => acc + order.totalPrice, 0);
+
+      // Calculate the number of orders
+      const ordersCount = orders.length;
+
+      // Send the response
+      res.status(200).json({
+        success: true,
+        message: "Sales report generated successfully.",
+        totalRevenue,
+        ordersCount,
+        orders,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
