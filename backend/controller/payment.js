@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
-const stripe = require("stripe")("sk_test_51QS15aK2ECjvEYHHaRL4TnalLQMnc7au7EQtjfhsxk9QUc5I0xEmKv2XS6VcmybtbTbHMifGWQDIvT2cRKI8pz0L00YOZJ61Bm");
+const stripe = require("stripe")
 
 router.post(
   "/process",
